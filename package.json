@@ -12,7 +12,9 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "airbrake": "^0.3.8"
+  },
   "devDependencies": {},
   "optionalDependencies": {},
   "scripts": {
