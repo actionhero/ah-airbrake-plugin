@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 exports.airbrake = function(api, next){
 
   api.airbrake = {};
@@ -10,8 +12,18 @@ exports.airbrake = function(api, next){
     // api.airbrake.client.developmentEnvironments = []; // don't report in various NODE_ENVs
   }
 
-  api.airbrake.notifier = function(type, err, extraMessages, severity){
-    api.airbrake.client.notify(err);
+  api.airbrake.notifier = function(err, type, name, objects, severity){
+    objects = _.extend({ connection : {} }, objects);
+    err.action = name;
+    err.component = type;
+    err.session = _.pick(objects.connection, 'id', 'fingerprint', 'connectedAt', 'type', 'remotePort', 'remoteIP')
+    api.airbrake.client.notify(err, function(err, url){
+      if(err){
+        console.log('airbrake error ' + err );
+      }else{
+        console.log('new airbrake log at ' + url );
+      }
+    });
   }
 
   api.airbrake._start = function(api, next){
