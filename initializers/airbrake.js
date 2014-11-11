@@ -10,7 +10,7 @@ exports.airbrake = function(api, next){
     // api.airbrake.client.developmentEnvironments = []; // don't report in various NODE_ENVs
   }
 
-  api.airbrake.notifier = function(type, err, extraMessages, severity){
+  api.airbrake.notifier = function(err, type, name, objects, severity){
     api.airbrake.client.notify(err);
   }
 
