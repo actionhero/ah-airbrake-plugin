@@ -1,4 +1,6 @@
 ## notes
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/actionhero/ah-airbrake-plugin.svg)](https://greenkeeper.io/)
 - be sure to enable the plugin within actionhero (`config/plugins.js`)
 - you will need to add the airbrake package (`npm install airbrake --save`) to your package.json
 
